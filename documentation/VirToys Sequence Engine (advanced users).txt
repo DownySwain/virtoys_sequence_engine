@@ -1,0 +1,201 @@
+ *****************************************************************
+ ********************                   Settings                    *********************
+ *****************************************************************
+
+Factory name
+ ****************************************************************
+engine_name  |  <factory name>
+// F.ex.: engine_name | The doll factory
+// the name of the factory, as it'll appear in chat.
+
+
+List of items to give to target 
+ ****************************************************************
+target_give  |  <item name>
+// adds an item to the folder that the user is given at start.
+// F.ex.: target_give | OC-Cuff 1.005 (l forearm)
+
+
+RLV_keywords
+ ****************************************************************
+RLV_keywords  |  <program name>  |  <keywords> < ; keywords> < ; keywords>
+// F.ex.: RLV_keywords | Busty  | Busty Lovedoll; Busty Avatar
+// The keywords are used to query the user's #RLV folder, to see if there's a folder that matches.
+// So, for instance, if the user has a #RLV folder named 'Busty Lovedoll', that folder will be selected. 
+// If there's more than one folder that matches the keywords, an random one of those will be selected.
+// If there's no match, then the default doll avatar will be used.
+// There's no distinction between upper- and lowercase. 
+// Substrings match if part of word, so if "avatar" match, "av" does, too.
+// - some pitfalls: the user may have subfolders for each part of the avatar, like 'Busty Lovedoll mouth'. And that'll match, too.
+// The program name is used, if there's a need to have a seperate program for that avatar, in one or more sections.
+// Then, you can put a notecard in the section, and name it  .program[.program name]
+// f.ex.:  .program.Busty
+// if there's a program present in the section that matches the program name, it'll be used instead of the default program.
+// Most notably is the 'coating' section, where there's a different color spray for each doll. 
+// And the 'packaging' section, where each doll is packed in a different box.
+
+
+ *****************************************************************
+ *****************                   Command Listing                  *******************
+ *****************************************************************
+
+Movement
+ ****************************************************************
+ball_move
+//// move horizontally to center <x,y> coordinates of this section. 
+//// since the command doesn't pause the program, you may need to put in a wait_time command to get the timing right.
+//// it's 'ball' because, well, at the start it was only a poseball moving. 
+//// It can, though, be whatever you'd want to build around it. Chair, car, capture frame. You name it. Here, it's a ball.
+ball_offset | <0.5,0.0,0.0>     // move up
+ball_offset | <-0.5,0.0,0.0>    // move down
+ball_offset | <0.0,0.5,0.0>      // move right
+ball_offset | <0.0,-0.5,0.0>    // move left
+ball_offset | <0.0,0.0,0.5>      // move forwards
+ball_offset | <0.0,0.0,-0.5>    // move back
+//// move vector distance at ball_velocity
+
+
+Speed
+****************************************************************
+// how fast the user moves
+ball_velocity | 0.05 // default 0.01
+
+
+Rotating
+****************************************************************
+ball_rotate | <90.0,0.0,0.0>    // rotate counter-clockwise, x-axis (turn left)
+ball_rotate | <-90.0,0.0,0.0>  // rotate clockwise, x-axis (turn right)
+ball_rotate | <0.0,90.0,0.0>    // rotate counter-clockwise, y-axis (head up)
+ball_rotate | <0.0,-90.0,0.0>  // rotate clockwise, y-axis (feet up)
+ball_rotate | <0.0,0.0,90.0>    // rotate counter-clockwise, z-axis (right side up)
+ball_rotate | <0.0,0.0,-90.0>  // rotate clockwise, z-axis (left side up)
+
+
+Timing
+****************************************************************
+//// in seconds. Pauses the program
+wait_time |  <seconds>
+//// f.ex.: wait_time |  4
+
+
+Animation
+****************************************************************
+target_animation | <animation name>
+//// f.ex.: target_animation | sitting_doll
+//// position target in the named animation.
+//// the animation must be present in the ball's inventory
+
+
+Lockmeister
+****************************************************************
+//// Lockmeister support:  show/hide chains from Lockmeister-enabled cuffs to bondage frame
+chains_on
+chains_off
+//// Lockmeister support: Move the lockmeister points of the bondage frame
+ball_anchor_positions | <vector> | <vector> | <vector> | <vector> // leftwrist, rightwrist, leftankle, rightankle
+// For example: ball_anchor_positions | <-0.5,0.7,0.0> | <-0.5,-0.7,0.0>  | <0.7,0.7,0.0> | <0.7,-0.7,0.0>
+
+
+Sound
+****************************************************************
+play_sound | [sound name]
+//// f.ex.: play_sound | startrekdoor
+//// play sound once. 
+//// the sound must be present in the section's inventory
+sound_repeat | <sound name>
+//// f.ex.: sound_repeat | machinery
+//// play sound continiously
+sound_off
+//// stop sound
+
+
+Inventory
+****************************************************************
+//// Please see Marine Kelley's RLV documentation for all the attachment points and clothes layers
+//// http://wiki.secondlife.com/wiki/LSL_Protocol/RestrainedLifeAPI
+section_wear | <attachment point or clothes layer>
+//// if there's anything in the folder that's given to the user at start, that ends in '(mouth)', attach it.
+//// f.ex.: section_wear | mouth
+section_wear | [attachment point], [attachment point], [attachment point], [attachment point]
+//// more than one item can be specified, using commas.
+//// f.ex.: section_wear | r forearm, l forearm, r lower leg, l lower leg
+target_attach | <attachment point or clothes layer>
+//// f.ex.: target_attach | skin
+//// if there's anything in the selected folder that's of this type, wear it.
+
+
+Communication 
+****************************************************************
+target_say | [target_say message] // (IM)
+//// sends an IM to the target with the message
+section_say | Clean subject // (llSay)
+//// say in open chat
+section_whisper | <message> // (llWhisper)
+//// whisper in open chat
+section_do | clanks and hisses // (llSay emote)
+//// emote in open chat as the name set in the .settings notecard
+
+
+RestrainedLove (the viewer formerly known as RestrainedLife)
+****************************************************************
+//// Please see Marine Kelley's documentation for all the RLV commands
+/// http://wiki.secondlife.com/wiki/LSL_Protocol/RestrainedLifeAPI
+rlv_command | <RLV command>
+//// Here's some noteworthy examples
+rlv_command | @detach:mouth=y               // allow detaching. In this case, mouth
+//// needs to be done first, if you want to attach anything at that point, since all points are locked at start.
+rlv_command | @detach:mouth=force       // detach item. In this case, detach anything thats attached to mouth
+//// force detach anything attached at that point. Unless RLV locked - so try to have as little locked on as possible.
+rlv_command | @detach:mouth=n               // lock attachment point. In this case, mouth
+//// lock the attachment point again
+rlv_command | @clear
+//// unlock everything, and clear all restrictions
+
+
+Section Transition
+****************************************************************
+// This line needs to appear at the end of the particular section's .program notecard.
+// To tell it what section to move to next. The name of each section HAS to be unique.
+section_next | <Name of next section object>
+// For example:
+section_next | transformer clothing
+
+Program end
+****************************************************************
+//// ends the program, clear all restrictions and forces an unsit. Must be the last command.
+program_end
+
+
+// Plug-ins
+//// Plug-ins are the bits that's specific to the factory. It's those that rezzes the moving parts, open and closes doors, etc.
+plugin_command  |  <plug-in script name> <  |  plugin command> <  |  optional value>
+//// When the transformation engine gets to a line starting with 'plugin_command', it pass control to the named script, 
+//// then wait for a ok/fail message from the plug-in script.
+//// See the sample plugin script.
+
+// Examples
+plugin_command | plugin_conveyor_belt | start
+plugin_command | plugin_conveyor_belt | stop
+
+plugin_command | plugin_carriage | rez_undercarriage // rez stationary parts
+plugin_command | plugin_carriage | hide // hide stationary parts connected to carriage
+
+plugin_command | plugin_doors | open_doors
+plugin_command | plugin_doors | close_doors
+
+plugin_command | plugin_box  | box_up   // move box up
+plugin_command | plugin_box  | box_down // move down box
+
+plugin_command | plugin_injector | start                // rez the injector
+plugin_command | plugin_injector | extend
+plugin_command | plugin_injector | move_down
+plugin_command | plugin_injector | move_up
+plugin_command | plugin_injector | stop                 // delete the injector after use
+
+plugin_command | plugin_hairdo | start                  // rez the 'drying helmet'
+plugin_command | plugin_hairdo | move_up
+plugin_command | plugin_hairdo | swing_out
+plugin_command | plugin_hairdo | move_down
+plugin_command | plugin_hairdo | move_up
+plugin_command | plugin_hairdo | swing_in
+plugin_command | plugin_hairdo | stop                  // and delete it after use

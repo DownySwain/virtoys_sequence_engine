@@ -1,0 +1,14 @@
+The VirToys Sequence scripts are licensed under the GNU General Public License, v3 (https://www.gnu.org/licenses/gpl-3.0.txt), with the following addendum:
+
+Throughout this license the term "authors" refers to Downy Swain and other contributors to VirToys Sequence engine.
+
+"Full perms" means maintaining the permissions to modify, copy, and transfer in Second Life. 
+If the Second Life platform should allow more fine-grained permissions in the future, then "full perms" will mean the most permissive possible set of permissions allowed by the platform.
+
+The VirToys Sequence scripts are free to be copied, modified, and redistributed, subject to the following conditions:
+  - if you distribute the VirToys Sequence scripts, you must include this license.
+  - If you distribute the VirToys Sequence scripts, you must leave them full perms.  (This includes using the scripts in objects that you make.)
+  - If you modify the VirToys Sequence scripts and distribute the modifications, you must also make your modifications full perms.
+
+Custom plugins that are created by you, and which communicate with the VirToys Sequence scripts only through link or chat messages, are not subject to the above restrictions (this will most likely be the major part of your own builds).
+

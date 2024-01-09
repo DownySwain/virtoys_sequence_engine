@@ -1,0 +1,39 @@
+VirToys Sequence Script Manual. v1.0
+Developed by Downy Swain (2024)
+
+First of all, thanks must to be given to all those who tested this device.
+A very special thank you goes out to Amea Aya of Vexation, for help with RLV, and our friends in Coghaven, 
+who deployed the first production model of the factory, and helped get this product out to the door, and into your hands!
+
+********************
+* How does it work? *
+********************
+
+All that is required from the victim... err.. subject is the use of an RLV viewer such as Restrained Love or Emerald, 
+a recent RLV relay, and a #RLV folder in inventory.  
+The use of the Susan's Relay is recommended, as testing has shown it produces the best results.
+
+************************
+* Can it be customized?  *
+************************
+
+YES! Here's how it works:
+The factory is made of a number of sections, that each has a program. 
+When activated, the section runs through the program, line by line. 
+The last line in the program activates the next section - and so on, until the last section. 
+
+The first section is a special case: It has a capture function, and checks if the user is using a RLV viewer. 
+If yes, the user is given a folder that contains some items used by the factory, and a default avatar.
+It also determines which avatar the user is to be turned into. 
+This is done by querying the user's #RLV folder, to see if there's a folder that matches some keywords.
+So, for instance, if 'Rubberdoll' is set as a keyword, and the user has a #RLV folder named 'Rubberdoll', 
+that folder will be selected. 
+If there's more than one folder that matches the keywords, an random one of those will be selected. 
+If there's no match, the default doll avatar will be used.
+
+Since it's not one big build, but made of sections, you can put them together any which way you like. 
+
+Want to turn the user into a pink elephant or a terminator robot?
+Actually, you can.... but you may have to modify the whole factory to fit the process. 
+You may even have to write your own plug-in scripts, and build your own sections. 
+But if you really want to, you can.
